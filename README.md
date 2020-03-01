@@ -51,6 +51,6 @@ $ roslaunch ball_chaser ball_chaser.launch
 ```
 
 #### How to command robot ?
-add a white ball in the Gazebo world and the robot will chase it, if it's in the range of camera vision
+There is a model of white ball, outside office building in Gazebo, you can drag the ball around and the robot will chase it, if it's in the range of camera vision
 
 
