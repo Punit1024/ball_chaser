@@ -141,16 +141,16 @@ void process_image_callback(const sensor_msgs::Image img)
     break;
 
     case Center:
-    drive_robot(0.3,0);
+    drive_robot(0.45,0);
     break;
 
     case Left:
-    drive_robot(0.1,0.1);
+    drive_robot(0.0,0.4);
     break;
 
 
     case Right :
-    drive_robot(0.1,-0.1);
+    drive_robot(0.0,-0.4);
     break;
 
     case Reached :
