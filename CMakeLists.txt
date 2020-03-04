@@ -8,9 +8,13 @@ add_compile_options(-std=c++11)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
-  message_generation
   roscpp
+  rospy
   std_msgs
+  sensor_msgs
+  cv_bridge
+  image_transport
+  message_generation
 )
 
 ## System dependencies are found with CMake's conventions
@@ -203,11 +207,16 @@ include_directories(
 
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
+find_package( OpenCV REQUIRED )
 include_directories(include ${catkin_INCLUDE_DIRS})
+include_directories( ${OpenCV_INCLUDE_DIRS} )
 add_executable(drive_bot src/drive_bot.cpp)
-target_link_libraries(drive_bot ${catkin_LIBRARIES})
+target_link_libraries(drive_bot ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
 add_dependencies(drive_bot drive_bot_generate_message_cpp)
 
+find_package( OpenCV REQUIRED )
 add_executable(process_image src/process_image.cpp)
-target_link_libraries(process_image ${catkin_LIBRARIES})
+include_directories( ${OpenCV_INCLUDE_DIRS} )
+include_directories(include ${catkin_INCLUDE_DIRS})
+target_link_libraries(process_image ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
 add_dependencies(process_image process_image_generate_messages_cpp)
